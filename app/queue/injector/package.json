@@ -1,0 +1,16 @@
+{
+  "name": "statistic-queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bull": "^4.12.2",
+    "@faker-js/faker": "^8.4.1",
+    "mongoose": "^8.1.3"
+  }
+}

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inject-job
+  namespace: bank
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: inject-job
+  template:
+    metadata:
+      labels:
+        app: inject-job
+    spec:
+      containers:
+      - name: inject-job
+        image: abdoubentegar/injector-job:v7
+        env:
+        - name: MONGO_URI
+          value: "mongodb://adminuser:password123@4.233.192.179:27017/bank?authSource=admin"
+        - name: REDIS_HOST
+          value: "4.233.192.179"
+        - name: REDIS_PORT
+          value: "30355"
+        - name: ELASTICSEARCH_URI
+          value: "http://4.233.192.179:30546"
+        - name: ELASTICSEARCH_USERNAME
+          value: "elastic"
+        - name: ELASTICSEARCH_PASSWORD
+          value: "eaHmnvrTaKRuv23sye1K"
+        - name: "AMOUNT"
+          value: "1000"

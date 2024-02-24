@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-queue
+  namespace: bank
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: log-queue
+  template:
+    metadata:
+      labels:
+        app: log-queue
+    spec:
+      containers:
+      - name: log-queue
+        image: abdoubentegar/log-queue:v6
+        env:
+        - name: MONGO_URI
+          value: "mongodb://adminuser:password123@4.233.192.179:27017/bank?authSource=admin"
+        - name: REDIS_HOST
+          value: "4.233.192.179"
+        - name: REDIS_PORT
+          value: "30355"
+        - name: ELASTICSEARCH_URI
+          value: "http://10.43.205.220:9200"
+        - name: ELASTICSEARCH_USERNAME
+          value: "elastic"
+        - name: ELASTICSEARCH_PASSWORD
+          value: "eaHmnvrTaKRuv23sye1K"

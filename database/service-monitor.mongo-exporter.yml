@@ -1,0 +1,24 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: stable-kube-prometheus-sta-prometheus
+  namespace: prometheus
+  resourceVersion: "3215"
+spec:
+  endpoints:
+  - path: /metrics
+    port: http-web
+  - path: /metrics
+    port: reloader-web
+  namespaceSelector:
+    matchNames:
+    - mongo
+  selector:
+    matchLabels:
+      app: kube-prometheus-stack-prometheus
+      release: stable
+      self-monitor: "true"
